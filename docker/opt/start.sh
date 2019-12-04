@@ -12,7 +12,7 @@ RANDOMVIRUS=$(date +%s|sha256sum|base64|head -c 10)
 #echo "Configurando o servidor DNS"
 #mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
 #cat <<EOF >>/etc/dnsmasq.conf
-#server=187.18.5.7
+#server=8.8.8.8
 #listen-address=127.0.0.1
 #domain=$DOMAIN
 #mx-host=$DOMAIN,$HOSTNAME.$DOMAIN,0
