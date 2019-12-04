@@ -2,97 +2,97 @@
 [![](https://images.microbadger.com/badges/version/busybox42/zimbra-docker-centos.svg)](https://microbadger.com/images/busybox42/zimbra-docker-centos "Get your own version badge on microbadger.com")
 
 # Zimbra
-In this Repository you will find how to install Zimbra on Docker
+Neste repositório, você encontrará como instalar o Zimbra no Docker
 
 # Docker
 ## How to install Docker
-Keep posted of the changes in the next Zimbra Wiki - https://wiki.zimbra.com/wiki/Deploy_Zimbra_Collaboration_using_docker
+Mantenha-se informado das alterações no Zimbra Wiki - https://wiki.zimbra.com/wiki/Deploy_Zimbra_Collaboration_using_docker
 
-Depend of your OS, you need to install Docker in different ways, take a look into the official Website - https://docs.docker.com/engine/installation/
+Depende do seu sistema operacional, você precisa instalar o Docker de maneiras diferentes, consulte o site oficial - https://docs.docker.com/engine/installation/
 
-One of the advantages of using docker is that the host OS does not matter, the containers will work on any platform.
+Uma das vantagens do uso do docker é que o sistema operacional host não importa, os contêineres funcionarão em qualquer plataforma.
 
-## Downloading the image
-The first step is to pull this image into your docker environment, for that just run the next:
+## Download da imagem
+A primeira etapa é inserir esta imagem no ambiente do docker, para isso basta executar a próxima:
 ```bash
-docker pull busybox42/zimbra-docker-centos
+docker pull 
 ```
 
-## Creating Zimbra Containers
-Now that we have an image called busybox42/zimbra-docker-centos we can do a docker run with some special parameters, like this:
+## Criando contêiner Zimbra
+Agora que temos uma imagem chamada "", podemos executar uma janela de encaixe com alguns parâmetros especiais, como este:
 ```bash
-docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2017 busybox42/zimbra-docker-centos
+docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2017 ""
 ```
-As you can see we tell the container the ports we want to expose, and on which port, we also specify the container hostname, the password foir the Zimbra Administrator Account, and the image to use.
+Como você pode ver, informamos ao contêiner as portas que queremos expor e em qual porta também especificamos o nome do host do contêiner, a senha da conta de administrador do Zimbra e a imagem a ser usada.
 
-That's it! You can visit now the IP of your Docker Machine using HTTPS, or try the Admin Console with HTTPS and port 7071.
+É isso aí! Agora você pode visitar o IP do seu Docker Machine usando HTTPS ou experimentar o Admin Console com HTTPS e porta 7071.
 
-## Contribute to the Project
-If you like to contribute to the project, you are free to do so, just fork this repo and submit your changes.
+## Contribua para o projeto
+Se você gosta de contribuir com o projeto, é livre para fazê-lo, basta dividir este repositório e enviar as alterações.
 
-# Manual process - not really recommended
+# Processo manual - não é realmente recomendado
 
 <details>
   <summary>Manual process</summary>
 
-## Creating the Zimbra Image
+## Criando a imagem do Zimbra
 
- The content of the Dockerfile and the start.sh is based on the next Script - ZimbraEasyInstall. The Dockerfile creates a CentOS 7 image and install on it all the OS dependencies which Zimbra needs, when the container is launched, automatically starts with the start.sh script which creates an autoconfig file which is injected during the zimbra Installation.
+  O conteúdo do Dockerfile e do start.sh é baseado no próximo script - ZimbraEasyInstall. O Dockerfile cria uma imagem do CentOS 7 e instala nele todas as dependências do SO que o Zimbra precisa, quando o contêiner é iniciado, inicia automaticamente com o script start.sh que cria um arquivo de configuração automática que é injetado durante a instalação do zimbra.
 
-### Using git
-Download from github, you will need git installed on your OS
+### Usando git
+Baixe no github, você precisará do git instalado no seu sistema operacional
 
 ```bash
-git clone https://github.com/busybox42/zimbra-docker-centos.git
+git clone 
 ```
-### Using wget
-For those who want to use wget, follow the next instructions to download the Zimbra-docker package. You might need wget and unzip installed on your OS
+### Usando o wget
+Para quem deseja usar o wget, siga as próximas instruções para baixar o pacote Zimbra-docker. Pode ser necessário instalar e descompactar o wget no seu sistema operacional
 ```bash
-wget https://github.com/busybox42/zimbra-docker-centos/archive/master.zip
+wget 
 unzip master.zip
 ```
 
-### Build the image using the Dockerfile
-The `Makefile` in the docker/ directory provides you with a convenient way to build your docker image. You will need make on your OS. Just run
+### Crie a imagem usando o Dockerfile
+O `Makefile` no diretório docker / fornece uma maneira conveniente de criar sua imagem do docker. Você precisará fazer no seu sistema operacional. Apenas rode
 
 ```bash
 cd zimbra-docker-centos/docker
 sudo make
 ```
 
-The default image name is zimbra_docker.
+O nome da imagem padrão é zimbra_docker.
 
-### Deploy the Docker container
-Now, to deploy the container based on the previous image. As well as publish the Zimbra Collaboration ports, the hostname and the proper DNS, as you want to use bind as a local DNS nameserver within the container, also we will send the password that we want to our Zimbra Server like admin password, mailbox, LDAP, etc.: Syntax:
+### Implantar o contêiner do Docker
+Agora, implante o contêiner com base na imagem anterior. Além de publicar as portas do Zimbra Collaboration, o nome do host e o DNS adequado, como você deseja usar o bind como um servidor de nomes DNS local dentro do contêiner, também enviaremos a senha que queremos para o nosso Servidor Zimbra, como senha de administrador, caixa de correio, LDAP, etc .: Sintaxe:
 ```bash
 docker run -p PORTS -h HOSTNAME.DOMAIN --dns DNSSERVER -i -t -e PASSWORD=YOURPASSWORD NAMEOFDOCKERIMAGE
 ```
-Example:
+Exemplo:
 ```bash
-docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2017 zimbra_docker_centos
+docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2019 zimbra_docker_centos
 ```
-Depending out your limits settings you may need to add a --ulimits option.
-Example:
+Dependendo das configurações de limites, pode ser necessário adicionar uma opção --ulimits.
+Exemplo:
 ```bash
-docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2017 --ulimit nofile=524288:524288 zimbra_docker_centos
+docker run -p 25:25 -p 80:80 -p 465:465 -p 587:587 -p 110:110 -p 143:143 -p 993:993 -p 995:995 -p 443:443 -p 8080:8080 -p 8443:8443 -p 7071:7071 -p 9071:9071 -h zimbra-docker.zimbra.io --dns 127.0.0.1 --dns 8.8.8.8 -i -t -e PASSWORD=Zimbra2019 --ulimit nofile=524288:524288 zimbra_docker_centos
 ```
 
-This will create the container in few seconds, and run automatically the start.sh:
+Isso criará o contêiner em alguns segundos e executará automaticamente o start.sh:
 
-* Install a DNS Server based in dnsmasq
-* Configure all the DNS Server to resolve automatically internal the MX and the hostname that we define while launch the container.
-* Install a fresh Zimbra Collaboration 8.8.8 within Zimbra Chat and Drive!
-* Create 2 files to automate the Zimbra Collaboration installation, the keystrokes and the config.defaults.
-* Launch the installation of Zimbra based only in the .install.sh -s
-* Inject the config.defaults file with all the parameters that is autoconfigured with the Hostname, domain, IP, and password that you define before.
+* Instale um servidor DNS com base no dnsmasq
+* Configure todo o servidor DNS para resolver automaticamente o MX interno e o nome do host que definimos ao iniciar o contêiner.
+* Instale um novo Zimbra Collaboration 8.8.8 no Zimbra Chat and Drive!
+* Crie 2 arquivos para automatizar a instalação do Zimbra Collaboration, as teclas digitadas e os config.defaults.
+* Inicie a instalação do Zimbra baseada apenas em .install.sh -s
+* Injete no arquivo config.defaults todos os parâmetros configurados automaticamente com o nome do host, domínio, IP e senha que você definiu anteriormente.
 
-The script takes a few minutes, dependent on the your Internet Speed, and resources.
+O script leva alguns minutos, dependendo da velocidade da Internet e dos recursos.
 
 </details>
 
-## Known issues
+## Problemas conhecidos
 
-After the Zimbra automated installation, if you close or quit the bash console from the container, the docker container might exit and keep in stopped state, you just need to run the next commands to start your Zimbra Container:
+Após a instalação automatizada do Zimbra, se você fechar ou sair do console bash do contêiner, o contêiner do docker poderá sair e permanecer no estado parado, basta executar os próximos comandos para iniciar o seu Zimbra Container:
 
 ```bash
 docker ps -a 
