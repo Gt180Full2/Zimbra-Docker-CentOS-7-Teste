@@ -11,6 +11,7 @@ RUN yum update -y --nogpgcheck && yum install -y --nogpgcheck \
   wget \
   dialog \
   sqlite \
+  dnsmasq \
   bind \
   bind-chroot \
   bind-libs
