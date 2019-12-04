@@ -1,4 +1,4 @@
-IMAGE=Zimbra-Docker-CentOS-7-Teste
+IMAGE=zimbra_docker_centos_teste
 
 .PHONY: all build
 
