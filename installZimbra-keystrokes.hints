@@ -8,9 +8,9 @@ y - zimbra-snmp
 y - zimbra-store
 y - zimbra-apache
 y - zimbra-spell
-n - zimbra-memcached
-n - zimbra-proxy
+y - zimbra-memcached
+y - zimbra-proxy
 y - zimbra-chat
 y - zimbra-drive
-n - zimbra-imapd
+y - zimbra-imapd
 y - continue
