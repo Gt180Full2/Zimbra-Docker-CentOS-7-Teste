@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Starting Zimbra"
+echo "Iniciando o Zimbra"
 /sbin/sshd -D &
 /etc/init.d/zimbra start
 
