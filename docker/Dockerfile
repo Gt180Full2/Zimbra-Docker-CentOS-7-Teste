@@ -12,11 +12,7 @@ RUN yum update -y --nogpgcheck && yum install -y --nogpgcheck \
   dialog \
   sqlite \
   dnsmasq \
-  bind \
-  bind-chroot \
-  bind-libs
   bind-utils \
-  nc \
   sudo \
   sysstat \
   unzip \
