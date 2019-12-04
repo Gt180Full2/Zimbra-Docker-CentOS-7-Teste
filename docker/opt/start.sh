@@ -9,17 +9,17 @@ RANDOMSPAM=$(date +%s|sha256sum|base64|head -c 10)
 RANDOMVIRUS=$(date +%s|sha256sum|base64|head -c 10)
 
 ## Instalando o servidor DNS ##
-#echo "Configurando o servidor DNS"
-#mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
-#cat <<EOF >>/etc/dnsmasq.conf
-#server=8.8.8.8
-#listen-address=127.0.0.1
-#domain=$DOMAIN
-#mx-host=$DOMAIN,$HOSTNAME.$DOMAIN,0
-#address=/$HOSTNAME.$DOMAIN/$CONTAINERIP
-#user=root
-#EOF
-#sudo systemctl restart dnsmasq
+echo "Configurando o servidor DNS"
+mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+cat <<EOF >>/etc/dnsmasq.conf
+server=8.8.8.8
+listen-address=127.0.0.1
+domain=$DOMAIN
+mx-host=$DOMAIN,$HOSTNAME.$DOMAIN,0
+address=/$HOSTNAME.$DOMAIN/$CONTAINERIP
+user=root
+EOF
+sudo systemctl restart dnsmasq
 
 ## Configurando servidor sshd ##
 echo "Configurando o servidor sshd."
