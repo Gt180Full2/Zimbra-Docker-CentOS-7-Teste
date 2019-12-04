@@ -1,5 +1,5 @@
 #!/bin/sh
-## Preparing all the variables like IP, Hostname, etc, all of them from the container
+## Preparando todas as variáveis como IP, Nome do host, etc, todas elas no contêiner
 sleep 5
 HOSTNAME=$(hostname -s)
 DOMAIN=$(hostname -d)
@@ -8,8 +8,8 @@ RANDOMHAM=$(date +%s|sha256sum|base64|head -c 10)
 RANDOMSPAM=$(date +%s|sha256sum|base64|head -c 10)
 RANDOMVIRUS=$(date +%s|sha256sum|base64|head -c 10)
 
-## Installing the DNS Server ##
-#echo "Configuring DNS Server"
+## Instalando o servidor DNS ##
+#echo "Configurando o servidor DNS"
 #mv /etc/dnsmasq.conf /etc/dnsmasq.conf.old
 #cat <<EOF >>/etc/dnsmasq.conf
 #server=187.18.5.7
@@ -21,12 +21,12 @@ RANDOMVIRUS=$(date +%s|sha256sum|base64|head -c 10)
 #EOF
 #sudo systemctl restart dnsmasq
 
-## setting up sshd server ##
-echo "Setting up sshd server."
+## Configurando servidor sshd ##
+echo "Configurando o servidor sshd."
 /usr/bin/ssh-keygen -A
 /sbin/sshd -D &
 
-## Creating the Zimbra Collaboration Config File ##
+## Criando o arquivo de configuração do Zimbra Collaboration ##
 touch /opt/zimbra-install/installZimbraScript
 cat <<EOF >/opt/zimbra-install/installZimbraScript
 AVDOMAIN="$DOMAIN"
@@ -135,7 +135,7 @@ zimbra_server_hostname="$HOSTNAME.$DOMAIN"
 INSTALL_PACKAGES="zimbra-core zimbra-ldap zimbra-logger zimbra-mta zimbra-snmp zimbra-store zimbra-apache zimbra-spell "
 EOF
 
-##Install the Zimbra Collaboration ##
+##Instale a colaboração Zimbra ##
 
 echo "Downloading Zimbra Collaboration 8.8.12"
 wget -O /opt/zimbra-install/zimbra.tar.gz https://files.zimbra.com/downloads/8.8.12_GA/zcs-NETWORK-8.8.12_GA_3794.RHEL7_64.20190329045002.tgz
@@ -146,29 +146,29 @@ tar xzvf /opt/zimbra-install/zimbra.tar.gz -C /opt/zimbra-install/
 echo "Installing Zimbra Collaboration just the Software"
 cd /opt/zimbra-install/zcs-* && ./install.sh -s < /opt/zimbra-install/installZimbra-keystrokes
 
-# Work around install issues.
+# Solução de problemas de instalação.
 mkdir -p /opt/zimbra/common/lib/jvm/java/jre/lib/security
 chown -R zimbra:zimbra /opt/zimbra/common/lib/jvm/java/jre/lib/security
 
-echo "Installing Zimbra Collaboration injecting the configuration"
+echo "Instalando o Zimbra Collaboration injetando a configuração"
 /opt/zimbra/libexec/zmsetup.pl -c /opt/zimbra-install/installZimbraScript
 
-#echo "Adding ZetAlliance Repository"
-#wget https://copr.fedorainfracloud.org/coprs/zetalliance/zimlets/repo/#epel-7/zetalliance-zimlets-epel-7.repo -O /etc/yum.repos.d/zetalliance-#zimlets-epel-7.repo
+echo "Adicionando repositório do ZetAlliance"
+wget https://copr.fedorainfracloud.org/coprs/zetalliance/zimlets/repo/#epel-7/zetalliance-zimlets-epel-7.repo -O /etc/yum.repos.d/zetalliance-#zimlets-epel-7.repo
 
-#echo "Installing zimbra-patch"
-#yum clean metadata
-#yum check-update
-#yum install zimbra-patch -y
+echo "Instalando o zimbra-patch"
+yum clean metadata
+yum check-update
+yum install zimbra-patch -y
 
-echo "Restarting Zimbra"
+echo "Reiniciando o Zimbra"
 su - zimbra -c 'zmcontrol restart'
 
 echo "yum clean all"
 yum clean all
 
-#echo "Replacing Installer Script with Start Script"
-#mv /opt/start.sh /opt/start.sh_installer && mv /opt/start.sh_postinstall /#opt/start.sh
+echo "Substituindo Script do Instalador pelo Script Inicial"
+mv /opt/start.sh /opt/start.sh_installer && mv /opt/start.sh_postinstall /opt/start.sh
 
 echo "Removing Install Files"
 cd ~
