@@ -141,7 +141,7 @@ echo "Extracting files from the archive"
 tar xzvf /opt/zimbra-install/zimbra.tar.gz -C /opt/zimbra-install/
 
 echo "Installing Zimbra Collaboration just the Software"
-cd /opt/zimbra-install/zcs-* && ./install.sh -s < /opt/zimbra-install/installZimbra-keystrokes
+cd /opt/zimbra-install/zcs-* && ./install.sh -s #< /opt/zimbra-install/installZimbra-keystrokes
 
 # Solução de problemas de instalação.
 mkdir -p /opt/zimbra/common/lib/jvm/java/jre/lib/security
@@ -151,7 +151,7 @@ echo "Instalando o Zimbra Collaboration injetando a configuração"
 /opt/zimbra/libexec/zmsetup.pl -c /opt/zimbra-install/installZimbraScript
 
 echo "Adicionando repositório do ZetAlliance"
-wget https://copr.fedorainfracloud.org/coprs/zetalliance/zimlets/repo/#epel-7/zetalliance-zimlets-epel-7.repo -O /etc/yum.repos.d/zetalliance-#zimlets-epel-7.repo
+wget https://copr.fedorainfracloud.org/coprs/zetalliance/zimlets/repo/epel-7/zetalliance-zimlets-epel-7.repo -O /etc/yum.repos.d/zetalliance-zimlets-epel-7.repo
 
 echo "Instalando o zimbra-patch"
 yum clean metadata
