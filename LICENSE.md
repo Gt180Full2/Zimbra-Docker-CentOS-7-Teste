@@ -1,4 +1,4 @@
-Direitos autorais 2018 Alan Denniston
+Direitos autorais 2019 Michael Robert
 
 A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia deste software e dos arquivos de documentação associados (o "Software"), para negociar no Software sem restrições, incluindo, sem limitação, os direitos de uso, cópia, modificação, fusão , publicar, distribuir, sublicenciar e / ou vender cópias do Software e permitir que as pessoas a quem o Software é fornecido o façam, sob as seguintes condições:
 
