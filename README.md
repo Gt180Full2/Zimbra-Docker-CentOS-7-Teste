@@ -33,7 +33,7 @@ Se você gosta de contribuir com o projeto, é livre para fazê-lo, basta dividi
 # Processo manual - não é realmente recomendado
 
 <details>
-  <summary>Manual process</summary>
+  <summary>Processo manual</summary>
 
 ## Criando a imagem do Zimbra
 
